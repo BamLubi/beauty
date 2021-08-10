@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "订单",
+  "usingComponents": {
+    "van-button": "../../components/vantui/button/index",
+    "van-icon": "../../components/vantui/icon/index",
+    "van-card": "../../components/vantui/card/index",
+    "van-divider": "../../components/vantui/divider/index"
+  }
+}

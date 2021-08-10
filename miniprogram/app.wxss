@@ -1,0 +1,12 @@
+/**app.wxss**/
+@import "./components/colorui/main.wxss";
+@import "./components/colorui/icon.wxss";
+@import "./components/colorui/animation.wxss";
+
+body {
+	background-color: #F6F6F6;
+}
+
+.blur{
+	filter: blur(2px);
+}

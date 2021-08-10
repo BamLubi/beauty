@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "商城",
+  "usingComponents": {
+    "van-sidebar": "../../components/vantui/sidebar/index",
+    "van-sidebar-item": "../../components/vantui/sidebar-item/index",
+    "van-action-sheet": "../../components/vantui/action-sheet/index",
+    "van-tag": "../../components/vantui/tag/index",
+    "van-divider": "../../components/vantui/divider/index",
+    "van-stepper": "../../components/vantui/stepper/index",
+    "van-button": "../../components/vantui/button/index",
+    "van-card": "../../components/vantui/card/index"
+  }
+}

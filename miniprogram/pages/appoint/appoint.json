@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "线上预约",
+  "usingComponents": {
+    "van-action-sheet": "../../components/vantui/action-sheet/index",
+    "van-divider": "../../components/vantui/divider/index",
+    "van-datetime-picker": "../../components/vantui/datetime-picker/index",
+    "van-popup": "../../components/vantui/popup/index"
+  }
+}

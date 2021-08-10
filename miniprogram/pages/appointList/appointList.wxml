@@ -1,0 +1,72 @@
+<!--pages/appointList/appointList.wxml-->
+<scroll-view scroll-y scroll-with-animation enable-back-to-top enhanced fast-deceleration class="{{isQrcodeModel ? 'blur' : ''}} animation-slide-bottom" style="height: 100vh;width: 100vw;" bindscrolltolower="scrollToLower">
+	<block wx:if="{{appointOrderList.length!=0}}">
+		<view wx:for="{{appointOrderList}}" wx:key="index"
+			class="order bg-white margin-sm shadow">
+			<view class="left padding-sm">
+				<view class="appoint">
+					<!-- 项目名称 -->
+					<view class="text-xl text-bold text-shadow text-cut"
+						style="color: #2d3436;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+						{{item.appoint.title}}</view>
+					<!-- 项目名称 -->
+					<view class="text-lg">({{item.appoint.type}})</view>
+				</view>
+				<!-- 预约时间 -->
+				<view class="text-black text-sub">预约时间: {{item.appoint_date}}</view>
+				<!-- 支付金额 -->
+				<view class="price">
+					<view class="text-sub text-black">支付金额: </view>
+					<view class="text-price text-red text-sub margin-left-xs">{{item.appoint.price/100}}</view>
+				</view>
+				<!-- 分割线 -->
+				<van-divider hairline />
+				<!-- 订单号 -->
+				<view class="order-code">
+					<view class="text-sm text-gray">订单号: {{item.uuid}}</view>
+					<view class="text-sm text-orange margin-left-xs" data-uuid="{{item.uuid}}" bindtap="copyToClipboard">复制</view>
+				</view>
+				<!-- 订单创立时间 -->
+				<view class="text-sm text-gray">创建时间: {{item.create_time}}</view>
+				<!-- 订单更新时间 -->
+				<view class="text-sm text-gray">更新时间: {{item.update_time}}</view>
+				<!-- 分割线 -->
+				<van-divider hairline />
+				<!-- 按钮组 -->
+				<view class="button-group">
+					<!-- 取消按钮 -->
+					<van-button plain icon="cross" type="default" size="small" class="margin-right" data-appoint="{{item}}" bindtap="cancel">取消预约</van-button>
+					<!-- 核销按钮 -->
+					<van-button icon="qr" type="warning" size="small" class="margin-right" data-uuid="{{item.uuid}}" data-status="{{item.status}}" bindtap="showQrcodeModel">{{item.status=='已完成'?'已核销':'核销'}}
+					</van-button>
+					<!-- 支付按钮 -->
+					<van-button icon="paid" type="info" size="small" data-uuid="{{item.uuid}}" data-status="{{item.status}}" bindtap="pay">{{item.status=='待支付'?'支付':'已支付'}}</van-button>
+				</view>
+			</view>
+			<!-- 订单状态 -->
+			<view wx:if="{{item.status=='待核销'}}" class="right text-center text-white bg-green">{{item.status}}</view>
+			<view wx:if="{{item.status=='待支付'}}" class="right text-center text-white bg-red">{{item.status}}</view>
+			<view wx:if="{{item.status=='已完成'}}" class="right text-center text-white bg-grey">{{item.status}}</view>
+		</view>
+		<!-- 显示更多信息 -->
+        <view>
+            <view wx:if="{{!hasMoreOrders}}" class="cu-load over" />
+            <view wx:elif="{{isLoading}}" class="cu-load loading" />
+            <view wx:else class="cu-load text-center text-black">上拉加载更多</view>
+        </view>
+	</block>
+	<!-- 默认页面 -->
+	<view wx:else class="default">
+		<image src="../../img/default/order.png" mode="aspectFill"></image>
+	</view>
+</scroll-view>
+
+<!-- 二维码模态框 -->
+<view class="qrcode-model {{isQrcodeModel ? '' : 'hide'}}" bindtap="hideQrcodeModel">
+	<view class="qrcode" catchtap>
+		<canvas canvas-id='qrcode' style="width: 100%;height: 100%;background-color: #f2f2f2;"></canvas>
+	</view>
+	<view class="close">
+		<text class="cuIcon-close text-gray" style="font-size: 50rpx;"></text>
+	</view>
+</view>

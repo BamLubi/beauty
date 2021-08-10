@@ -1,0 +1,17 @@
+/* pages/appoint/appoint.wxss */
+
+/* 覆写不需要的组件 */
+van-action-sheet .van-action-sheet__header{
+    font-weight: bold;
+    text-shadow: 6rpx 6rpx 8rpx rgba(26, 26, 26, 0.2);
+}
+
+van-action-sheet .van-action-sheet__gap{
+    display: none;
+}
+
+van-action-sheet .van-action-sheet__cancel{
+    background-color: #2684fe;
+    color: white;
+    font-weight: bold;
+}

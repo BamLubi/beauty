@@ -1,0 +1,50 @@
+<!--pages/settlement/settlement.wxml-->
+<view class="margin">
+    <!-- 地址 -->
+    <view class="address margin-bottom bg-white shadow padding-sm radius text-sub">
+        <!-- 左侧 -->
+        <view class="left">
+            <block wx:if="{{hasAddress}}">
+                <!-- 姓名和电话 -->
+            <view class="info">
+                <!-- 姓名 -->
+                <view>{{address.name}},</view>
+                <!-- 电话 -->
+                <view>{{address.tel}}</view>
+            </view>
+            <!-- 邮编 -->
+            <view class="margin-top-xs">邮编: {{address.code}}</view>
+            <!-- 地址 -->
+            <view class="margin-top-xs">地址: {{address.info}}</view>
+            </block>
+            <block wx:else>
+                <view bindtap="selectAddress">选择地址</view>
+            </block>
+        </view>
+        <!-- 右侧 -->
+        <view class="right" bindtap="selectAddress">
+            <van-icon plain name="arrow"/>
+        </view>
+    </view>
+
+    <!-- 商品内容 -->
+    <view class="goods margin-bottom bg-white shadow padding-sm radius">
+        <!-- 商品 -->
+        <view class="margin-xs" wx:for="{{cartList}}" wx:key="index">
+            <van-card price="{{item.discount_price/100}}" desc="{{item.info}}" title="{{item.title}}" thumb="{{item.images}}" num="{{item.amount}}">
+            </van-card>
+        </view>
+        <!-- 分割线 -->
+		<van-divider hairline />
+        <!-- 合计 -->
+        <view class="text-lg" style="display: flex;flex-direction: row;justify-content: space-between;align-content: flex-end;">
+            <view>合计:</view>
+            <view class="text-price text-red text-xl">{{totalPriceToString}}</view>
+        </view>
+    </view>
+
+    <!-- 按钮组 -->
+    <view class="">
+        <van-button icon="orders-o" type="danger" block bind:click="submit">提交订单</van-button>
+    </view>
+</view>

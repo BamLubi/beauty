@@ -1,0 +1,66 @@
+{
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
+        },
+        "game": {
+            "list": []
+        },
+        "gamePlugin": {
+            "list": []
+        },
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "商城",
+                    "pathName": "pages/shop/shop",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "购物车",
+                    "pathName": "pages/cart/cart",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "个人中心",
+                    "pathName": "pages/me/me",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "线上预约",
+                    "pathName": "pages/appoint/appoint",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "我的预约",
+                    "pathName": "pages/appointList/appointList",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "结算",
+                    "pathName": "pages/settlement/settlement",
+                    "query": "data=%5B%7B%22_id%22%3A%2214139e1261038d0f1a4807be177e3%22%2C%22title%22%3A%22%E8%8B%BE%E8%8E%B1%E5%AE%9D%E6%97%A5%E6%9C%AC%E5%A4%8D%E6%B4%BB%E8%8D%89%E9%9D%A2%E8%86%9C%E7%BE%8E%E5%AE%B9%E9%99%A2%E6%B6%82%E6%8A%B9%E5%BC%8F%E4%BF%9D%E6%B9%BF%E8%A1%A5%E6%B0%B4%E4%BF%AE%E6%8A%A4%22%2C%22info%22%3A%22%E5%A4%8D%E6%B4%BB%E8%8D%89%E9%9D%A2%E8%86%9C%22%2C%22discount_price%22%3A8800%2C%22images%22%3A%22cloud%3A%2F%2Flyy1-2mnm7.6c79-lyy1-2mnm7-1258923430%2Fassets%2Fgoods%2F14139e1261038d7900f1a4807be177e3%2F14139e1261038d7900f1a4807be177e3_title_0.jpg%22%2C%22amount%22%3A1%2C%22select%22%3Atrue%7D%5D",
+                    "scene": null
+                },
+                {
+                    "name": "我的订单",
+                    "pathName": "pages/orderList/orderList",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "管理员",
+                    "pathName": "rootPackage/pages/index/index",
+                    "query": "",
+                    "scene": null
+                }
+            ]
+        }
+    }
+}

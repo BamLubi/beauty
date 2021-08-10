@@ -1,0 +1,59 @@
+<!--pages/me/me.wxml-->
+<!-- 页面主体 -->
+<view class="head {{isQrcodeModel ? 'blur' : ''}}">
+	<!-- 头像等信息 -->
+	<view class="info">
+		<block wx:if="{{hasUserInfo}}">
+			<view class="userAvatar">
+				<open-data class="animation-fade" type="userAvatarUrl"></open-data>
+			</view>
+			<view class="userNickName text-white text-shadow">
+				<view class="text-xl text-bold">你好 <open-data type="userNickName"></open-data>
+				</view>
+				<view class="text-sm margin-top-xs">会员卡号: {{userInfo.vip_code}}</view>
+			</view>
+		</block>
+		<block wx:else>
+			<image class="userAvatar" src='/img/me/wechat.png'></image>
+			<button class="userButton" bindtap="getUserInfo">获取头像昵称</button>
+		</block>
+		<!-- 二维码 -->
+		<view class="qrcode" bindtap="showQrcodeModel">
+			<image src="/img/me/qrcode.png"></image>
+			<text class="text-sm text-shadow text-white">会员码</text>
+		</view>
+	</view>
+	<!-- 主体 -->
+	<view class="main">
+		<!-- 底部工具栏 -->
+		<view class="tools shadow cu-list menu bg-white text-sub sm-border">
+			<!-- 工具列表 -->
+			<view wx:for="{{toolList}}" wx:key="id" data-path="{{item.path}}"
+				data-type="{{item.type}}" bindtap="navigatePage" class="cu-item arrow">
+				<view class="content">
+					<image src="{{item.src}}"></image>
+					<text>{{item.name}}</text>
+				</view>
+			</view>
+			<!-- 仅管理员可见 -->
+			<view wx:if="{{userInfo.type=='root'}}" class="cu-item arrow" data-path="/rootPackage/pages/index/index" data-type="page" bindtap="navigatePage">
+				<view class="content">
+					<image src="/img/me/root.png"></image>
+					<text>管理员</text>
+				</view>
+			</view>
+			<view></view>
+		</view>
+	</view>
+</view>
+
+<!-- 二维码模态框 -->
+<view class="qrcode-model cu-modal {{isQrcodeModel ? 'show' : ''}}" style="display: {{isQrcodeModel?'inline':'none'}};"
+	bindtap="hideQrcodeModel">
+	<view class="cu-dialog" style="width: 250px;height: 250px;" catchtap>
+		<canvas canvas-id='qrcode' style="width: 100%;height: 100%;background-color: #f2f2f2;"></canvas>
+	</view>
+	<view class="close">
+		<text class="cuIcon-close text-gray" style="font-size: 50rpx;"></text>
+	</view>
+</view>

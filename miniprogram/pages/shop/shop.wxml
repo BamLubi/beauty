@@ -1,0 +1,81 @@
+<!--pages/shop/shop.wxml-->
+<!-- 侧边导航 -->
+<view class="sidebar">
+    <van-sidebar active-key="{{selectType}}" bind:change="changeType">
+        <van-sidebar-item wx:for="{{dict.type_list}}" wx:key="index" title="{{item}}" />
+    </van-sidebar>
+</view>
+
+<!-- 主体内容 -->
+<scroll-view scroll-y scroll-with-animation enable-back-to-top enhanced fast-deceleration bindscrolltolower="scrollToLower">
+    <!-- 商品 -->
+    <block wx:if="{{goodsList.length!=0}}">
+        <view class="margin-xs" wx:for="{{goodsList}}" wx:key="index" data-id="{{item._id}}" bindtap="showGoodModel">
+            <van-card price="{{item.discount_price/100}}" desc="{{item.info}}" title="{{item.title}}" thumb="{{item.images}}" lazy-load>
+                <view slot="num" class="van-card__num text-xl" bindtap="test" catchtap>
+                    <van-button round icon="plus" type="danger" size="mini" block data-id="{{item._id}}" bindtap="addToCartList"></van-button>
+                </view>
+            </van-card>
+        </view>
+        <!-- 显示更多信息 -->
+        <view>
+            <view wx:if="{{!hasMoreGoods}}" class="cu-load over" />
+            <view wx:elif="{{isLoading}}" class="cu-load loading" />
+            <view wx:else class="cu-load text-center text-black">上拉加载更多</view>
+        </view>
+    </block>
+    <!-- 默认页面 -->
+    <view wx:else class="default">
+        <image src="../../img/default/content.png" mode="aspectFill"></image>
+    </view>
+</scroll-view>
+
+<!-- 商品详情 -->
+<van-action-sheet show="{{isGoodModel}}" title="商品介绍" bind:close="closeGoodModel">
+    <scroll-view scroll-y scroll-with-animation enable-back-to-top enhanced fast-deceleration style="height: 75vh;" scroll-top="{{scrollViewTop}}">
+        <!-- 图片轮播 -->
+        <swiper class="screen-swiper square-dot" style="height: 60%;" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+            <swiper-item wx:for="{{goodDetail.images}}" wx:key="index">
+                <image src="{{item}}" mode="aspectFit" lazy-load></image>
+            </swiper-item>
+        </swiper>
+        <!-- 主体内容 -->
+        <view class="cu-card margin-top">
+            <!-- 标题和简介 -->
+            <view class="info shadow bg-white padding">
+                <!-- 标题 -->
+                <view class="text-xl text-bold text-black text-shadow">{{goodDetail.title}}</view>
+                <!-- 简介 -->
+                <view class="text-sub text-gray margin-top-sm">{{goodDetail.info}}</view>
+                <!-- 标签 -->
+                <block wx:if="{{goodDetail.tags.length!=0}}">
+                    <view class="margin-top-sm">
+                        <van-tag wx:for="{{goodDetail.tags}}" plain type="primary" class="margin-right-sm">{{item}}</van-tag>
+                    </view>
+                </block>
+            </view>
+            <!-- 购买 -->
+            <view class="buy shadow bg-white margin-top padding-left padding-right">
+                <!-- 价格 -->
+                <view class="price">
+                    <text>单价：</text>
+                    <text class="text-price text-xxl text-bold text-red margin-left-xs margin-right-xs">{{goodDetail.discount_price/100}}</text>
+                    <text class="text-sm">原价</text>
+                    <text class="text-price text-sm" style="text-decoration:line-through;">{{goodDetail.origin_price/100}}</text>
+                </view>
+                <!-- 数量 -->
+                <view class="num">
+                    <text>数量：</text>
+                    <van-stepper value="{{goodsAmount}}" min="1" max="99" bind:change="changeGoodsAmount"/>
+                    <van-button round type="primary" size="small" data-id="{{goodDetail._id}}" data-amount="{{goodsAmount}}" bindtap="addToCartList">￥{{(goodsAmount * goodDetail.discount_price)/100}} 加入购物车</van-button>
+                </view>
+            </view>
+            <!-- 分隔线 -->
+            <van-divider contentPosition="center">宝贝详情</van-divider>
+            <!-- 图片 -->
+            <view class="detail">
+                <image wx:for="{{goodDetail.detail}}" src="{{item}}" mode="widthFix" lazy-load></image>
+            </view>
+        </view>
+    </scroll-view>
+</van-action-sheet>

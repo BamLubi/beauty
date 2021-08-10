@@ -1,0 +1,85 @@
+<!--pages/appointList/orderList.wxml-->
+<scroll-view scroll-y scroll-with-animation enable-back-to-top enhanced fast-deceleration
+	class="{{isQrcodeModel ? 'blur' : ''}} animation-slide-bottom" style="height: 100vh;width: 100vw;"
+	bindscrolltolower="scrollToLower">
+	<block wx:if="{{orderList.length!=0}}">
+		<view wx:for="{{orderList}}" wx:key="index" class="order bg-white margin-sm shadow">
+			<!-- 内容 -->
+			<view class="left padding-sm">
+				<!-- 商品列表，只显示title和数量和单价 -->
+				<view wx:for="{{item.goods_list}}" wx:for-index="_index" wx:for-item="_item" wx:key="_index" class="goods text-black text-sm">
+					<view class="text-cut">{{_item.title}}</view>
+					<view class="text-price margin-left-sm">{{_item.discount_price/100}}</view>
+					<view class="margin-left-sm">x{{_item.amount}}</view>
+				</view>
+				<!-- 分割线 -->
+				<van-divider hairline />
+				<!-- 支付金额 -->
+				<view class="price">
+					<view class="text-sub text-black">支付金额: </view>
+					<view class="text-price text-red text-lg margin-left-xs">{{item.price/100}}</view>
+				</view>
+				<!-- 分割线 -->
+				<van-divider hairline />
+				<!-- 收货人 -->
+				<view class="text-sm text-gray">收货人: {{item.address.name}}</view>
+				<!-- 电话 -->
+				<view class="text-sm text-gray">电话: {{item.address.tel}}</view>
+				<!-- 订单地址 -->
+				<view class="text-sm text-gray">收货地址: {{item.address.info}}</view>
+				<!-- 快递单号 -->
+				<view class="order-code">
+					<view class="text-sm text-gray">快递单号: {{item.courier_number}}</view>
+					<view class="text-sm text-orange margin-left-xs" data-data="{{item.courier_number}}" bindtap="copyToClipboard">复制</view>
+				</view>
+				<!-- 分割线 -->
+				<van-divider hairline />
+				<!-- 订单号 -->
+				<view class="order-code">
+					<view class="text-sm text-gray">订单号: {{item.uuid}}</view>
+					<view class="text-sm text-orange margin-left-xs" data-data="{{item.uuid}}" bindtap="copyToClipboard">复制</view>
+				</view>
+				<!-- 订单创立时间 -->
+				<view class="text-sm text-gray">创建时间: {{item.create_time}}</view>
+				<!-- 订单更新时间 -->
+				<view class="text-sm text-gray">更新时间: {{item.update_time}}</view>
+				<!-- 分割线 -->
+				<van-divider hairline />
+				<!-- 按钮组 -->
+				<view class="button-group">
+					<!-- 取消按钮 -->
+					<van-button plain icon="cross" type="default" size="small" class="margin-right" data-uuid="{{item.uuid}}" data-status="{{item.status}}" bindtap="cancel">取消订单</van-button>
+					<!-- 核销按钮 -->
+					<van-button icon="qr" type="warning" size="small" class="margin-right" data-uuid="{{item.uuid}}" data-status="{{item.status}}" bindtap="showQrcodeModel">{{item.status=='已完成'?'已核销':'核销'}}
+					</van-button>
+					<!-- 支付按钮 -->
+					<van-button icon="paid" type="info" size="small" data-uuid="{{item.uuid}}" data-status="{{item.status}}" bindtap="pay">{{item.status=='待支付'?'支付':'已支付'}}</van-button>
+				</view>
+			</view>
+			<!-- 订单状态 -->
+			<view wx:if="{{item.status=='待收货'}}" class="right text-center text-white bg-green">{{item.status}}</view>
+			<view wx:if="{{item.status=='待支付'}}" class="right text-center text-white bg-red">{{item.status}}</view>
+			<view wx:if="{{item.status=='已完成'}}" class="right text-center text-white bg-grey">{{item.status}}</view>
+		</view>
+		<!-- 显示更多信息 -->
+		<view>
+			<view wx:if="{{!hasMoreOrders}}" class="cu-load over" />
+			<view wx:elif="{{isLoading}}" class="cu-load loading" />
+			<view wx:else class="cu-load text-center text-black">上拉加载更多</view>
+		</view>
+	</block>
+	<!-- 默认页面 -->
+	<view wx:else class="default">
+		<image src="../../img/default/order.png" mode="aspectFill"></image>
+	</view>
+</scroll-view>
+
+<!-- 二维码模态框 -->
+<view class="qrcode-model {{isQrcodeModel ? '' : 'hide'}}" bindtap="hideQrcodeModel">
+	<view class="qrcode" catchtap>
+		<canvas canvas-id='qrcode' style="width: 100%;height: 100%;background-color: #f2f2f2;"></canvas>
+	</view>
+	<view class="close">
+		<text class="cuIcon-close text-gray" style="font-size: 50rpx;"></text>
+	</view>
+</view>

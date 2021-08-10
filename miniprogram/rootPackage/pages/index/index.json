@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "管理员",
+  "usingComponents": {
+    "van-button": "../../../components/vantui/button/index"
+  }
+}

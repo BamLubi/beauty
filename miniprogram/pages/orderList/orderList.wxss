@@ -1,0 +1,98 @@
+/* pages/appointList/orderList.wxss */
+scroll-view{
+    /* 防止页面滚动导致的二维码移动，不知道为啥 */
+    overflow: hidden;
+}
+
+/* 默认图片 */
+scroll-view .default{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+scroll-view .default image{
+    width: 100%;
+}
+
+/* 内容 */
+.order{
+    display: flex;
+    flex-direction: row;
+    border-radius: 25rpx;
+    overflow: hidden;
+}
+
+.order .left{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 80%;
+}
+
+.order .left .goods{
+    display: flex;
+    flex-direction: row;
+}
+
+.order .left .price{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.order .left .van-divider{
+    margin-top: 10rpx !important;
+    margin-bottom: 10rpx !important;
+}
+
+.order .left .order-code{
+    display: flex;
+    flex-direction: row;
+}
+
+.order .left .button-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.order .right{
+    writing-mode: vertical-lr;
+    letter-spacing: 10rpx;
+    box-shadow: 1px 0px 1px grey inset;
+}
+
+/* 二维码模态框 */
+.hide{
+    display: none !important;
+}
+.qrcode-model{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    touch-action: none;
+}
+.qrcode-model .qrcode{
+    width: 250px;
+    height: 250px;
+    background-color: white;
+}
+.qrcode-model .close{
+    position: absolute;
+    width: 100vw;
+    bottom: 10vh;
+    display: flex;
+    justify-content: center;
+}

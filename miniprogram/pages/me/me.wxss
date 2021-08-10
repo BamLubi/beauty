@@ -1,0 +1,98 @@
+/* pages/me/me.wxss */
+.head {
+    display: relative;
+    flex-direction: column;
+    align-items: center;
+    height: 30vh;
+}
+
+.head::after {
+    content: '';
+    width: 120%;
+    height: 30vh;
+    position: absolute;
+    z-index: -1;
+    left: -10%;
+    border-radius: 0 0 50% 50%;
+    background: linear-gradient(#2684fe, #3c90fd);
+}
+
+/* 头像等信息 */
+.info{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 99;
+    height: 17vh;
+    width: 100vw;
+}
+
+.info .userAvatar {
+	overflow: hidden;
+	width: 150rpx;
+	height: 150rpx;
+	margin-left: 6vw;
+	border-radius: 50%;
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.info .userNickName{
+    margin-left: 4vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.info .userButton {
+    margin-left: 5vw;
+    font-size: medium;
+    border-radius: 98rpx;
+	background-color: rgb(0, 214, 107);
+	color: rgb(255, 255, 255);
+}
+
+/* 二维码 */
+.info .qrcode{
+    position: absolute;
+    right: 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info .qrcode image{
+    width: 50rpx;
+    height: 50rpx;
+}
+
+/* 二维码模态框 */
+.qrcode-model .close{
+    position: absolute;
+    width: 100vw;
+    bottom: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* 主体 */
+.main {
+    position: absolute;
+    top: 17vh;
+    width: 100vw;
+    height: 83vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 底部工具栏 */
+.tools {
+    flex: 1;
+    width: 88vw;
+    margin-top: 1vh;
+    margin-left: 6vw;
+    border-radius: 20rpx 20rpx 0 0;
+}
+
+.tools .tool{
+    flex: 1;
+}

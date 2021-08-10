@@ -1,0 +1,31 @@
+/* pages/cart/cart.wxss */
+scroll-view{
+    height: 90vh;
+}
+
+scroll-view .carts{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fafafa;
+}
+
+scroll-view .carts van-card{
+    flex: 1;
+}
+
+scroll-view .default{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+scroll-view .default image{
+    width: 100%;
+}
+
+van-submit-bar{
+    height: 10vh;
+}

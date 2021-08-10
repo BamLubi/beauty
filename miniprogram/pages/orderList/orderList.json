@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "usingComponents": {
+    "van-collapse": "../../components/vantui/collapse/index",
+    "van-collapse-item": "../../components/vantui/collapse-item/index",
+    "van-divider": "../../components/vantui/divider/index",
+    "van-button": "../../components/vantui/button/index"
+  }
+}

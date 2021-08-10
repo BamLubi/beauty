@@ -1,0 +1,85 @@
+/* rootPackage/pages/index/index.wxss */
+scroll-view{
+	background-color: #2684fe;
+}
+
+.table {
+    border: 0px solid darkgray;
+}
+
+.tr {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 3rem;
+    align-items: center;
+}
+
+.td {
+    width: 40%;
+    justify-content: center;
+    text-align: center;
+}
+
+.bg-w {
+    background: snow;
+}
+
+.bg-g {
+    background: #e6f3f9;
+}
+
+.th {
+    width: 40%;
+    justify-content: center;
+    color: #fff;
+    display: flex;
+    height: 3rem;
+    align-items: center;
+}
+
+image {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.address {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.address label {
+    font-size: 20px;
+	width: 30%;
+	margin-right: 5%;
+}
+
+.address text {
+    font-size: 17px;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: auto;
+	width: 60%;
+}
+
+/* 功能列表 */
+.functions{
+	margin: 15rpx;
+	padding: 5rpx;
+}
+
+.functions .functions-title{
+	font-size: 37rpx;
+	margin-bottom: 10rpx;
+}
+
+.functions .functions-btn{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 10rpx;
+	margin-bottom: 10rpx;
+}

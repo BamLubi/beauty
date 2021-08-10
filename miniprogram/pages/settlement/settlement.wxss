@@ -1,0 +1,23 @@
+/* pages/settlement/settlement.wxss */
+/* 收件地址 */
+.address{
+    display: flex;
+    flex-direction: row;
+}
+
+.address .left{
+    flex: 1;
+}
+
+.address .left .info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.address .right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

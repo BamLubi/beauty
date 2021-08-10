@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "van-submit-bar": "../../components/vantui/submit-bar/index",
+    "van-checkbox": "../../components/vantui/checkbox/index",
+    "van-card": "../../components/vantui/card/index",
+    "van-stepper": "../../components/vantui/stepper/index",
+    "van-swipe-cell": "../../components/vantui/swipe-cell/index"
+  }
+}

@@ -1,0 +1,32 @@
+<!--pages/cart/cart.wxml-->
+<!-- 购物车内容 -->
+<scroll-view scroll-y scroll-with-animation enable-back-to-top enhanced fast-deceleration style="touch-action: none;">
+    <!-- 商品 -->
+    <block wx:if="{{cartList.length!=0}}">
+        <van-swipe-cell wx:for="{{cartList}}" wx:key="index" id="cart{{index}}" right-width="65" async-close bind:close="swipeCellClose" bind:open="swipeCellOpen">
+            <van-cell-group class="carts margin-top-sm">
+                <!-- 复选框 -->
+                <van-checkbox value="{{ item.select }}" class="margin-left" data-index="{{index}}" bind:change="selectGood"></van-checkbox>
+                <!-- 主体 -->
+                <van-card price="{{(item.discount_price * item.amount)/100}}" desc="{{item.info}}" title="{{item.title}}" thumb="{{ item.images }}" lazy-load>
+                    <view slot="num" class="van-card__num">
+                        <van-stepper value="{{ item.amount }}" min="1" max="99" data-index="{{index}}" bind:change="changeGoodsAmount"/>
+                    </view>
+                </van-card>
+            </van-cell-group>
+            <view slot="right" class="bg-red" style="width: 65px;height: 100%;display: flex;flex-direction: row;justify-content: center; align-items: center;" data-index="{{index}}" bindtap="deleteGood">
+                <text class="text-sub text-white">删除</text>
+            </view>
+        </van-swipe-cell>
+    </block>
+    <!-- 默认页面 -->
+    <view wx:else class="default">
+        <image src="../../img/default/cart.png" mode="aspectFill"></image>
+    </view>
+</scroll-view>
+
+<!-- 底部提交订单 -->
+<van-submit-bar price="{{ totalPrice }}" button-text="结算" bind:submit="submit" safe-area-inset-bottom="{{false}}" disabled="{{isDisabled}}">
+    <van-checkbox value="{{ isSelectAll }}" bind:change="selectAll" disabled="{{isDisabled}}">全选
+    </van-checkbox>
+</van-submit-bar>

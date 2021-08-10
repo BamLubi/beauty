@@ -1,0 +1,199 @@
+<!--rootPackage/pages/index/index.wxml-->
+<view class="table">
+    <!-- 顶部导航栏 -->
+    <scroll-view scroll-x class="nav">
+        <view class="flex text-center">
+            <view class="cu-item text-bold flex-sub {{index==TabCur?'text-white cur':''}}" wx:for="{{TabCurText}}"
+                wx:key bindtap="tabSelect" data-id="{{index}}">
+                {{item}}
+            </view>
+        </view>
+    </scroll-view>
+
+    <!-- 核销 -->
+    <view wx:if="{{TabCur==0}}">
+        <!-- 预约信息 -->
+        <view class="cu-bar bg-white margin-top-xs">
+            <view class="action">
+                <text class="cuIcon-titles text-blue"></text>
+                <text class="text-xl text-bold">预约信息</text>
+            </view>
+        </view>
+        <view class="margin-top-xs margin-left">
+            <van-button plain icon="scan" type="info" data-type="appoint-pay" bindtap="verify">支付核销</van-button>
+            <van-button plain icon="scan" type="warning" class="margin-left-xs" data-type="appoint-com" bindtap="verify">完成核销</van-button>
+        </view>
+        <!-- 订单信息 -->
+        <view class="cu-bar bg-white margin-top">
+            <view class="action">
+                <text class="cuIcon-titles text-blue"></text>
+                <text class="text-xl text-bold">订单信息</text>
+            </view>
+        </view>
+        <view class="margin-top-xs margin-left">
+            <van-button plain icon="scan" type="info" data-type="order-pay" bindtap="verify">支付核销</van-button>
+            <van-button plain icon="scan" type="warning" class="margin-left-xs" data-type="order-com" bindtap="verify">到货核销</van-button>
+        </view>
+    </view>
+
+    <!-- 预约订单:查看所有待核销订单，且按时间增序 -->
+    <view wx:if="{{TabCur==1}}">
+        <!-- 标题 -->
+        <view class="tr bg-blue">
+            <view class="th" style="width: 18%!important;">序号</view>
+            <view class="th" style="width: 18%!important;">头像</view>
+            <view class="th">昵称</view>
+            <view class="th">项目</view>
+            <view class="th">类型</view>
+            <view class="th">时间</view>
+        </view>
+        <!-- 没有人申请 -->
+        <view wx:if="{{exchangeListData.length==0}}" class="text-center padding text-shadow text-black"
+            style="font-size: 16px;">暂时没有人申请</view>
+        <!-- 列表 -->
+        <block wx:for="{{3}}" wx:key="{{code}}">
+            <view class="tr {{index % 2 == 0?'bg-g':''}}">
+                <!-- 序号 -->
+                <view class="td" style="width: 18%!important;">{{index+1}}</view>
+                <!-- 头像 -->
+                <view class="td" style="width: 18%!important;">
+                    <image src="{{item.userInfo.avatarUrl}}"></image>
+                </view>
+                <!-- 昵称 -->
+                <view class="td text-cut">陆于洋</view>
+                <!-- 项目 -->
+                <view class="td">你好</view>
+                <!-- 类型 -->
+                <view class="td">2021-8-1 12:12:12</view>
+                <!-- 清空按钮 -->
+                <view class="td">
+                    <button class="cu-btn bg-cyan round shadow" bindtap="exchange" data-index="{{index}}">兑换</button>
+                </view>
+            </view>
+        </block>
+        <!-- 底部信息 -->
+        <block wx:if="{{exchangeListLength>=20}}">
+            <view wx:if="{{!exchangeListHasMore}}" class="cu-load over" />
+            <view wx:elif="{{exchangeListIsLoad}}" class="cu-load loading" />
+            <view wx:else class="cu-load text-center text-black" bindtap="loadMore">点我加载更多</view>
+        </block>
+    </view>
+
+    <!-- 购物订单 -->
+    <view wx:if="{{TabCur==2}}">
+        <!-- 标题 -->
+        <view class="tr bg-blue">
+            <view class="th" style="width: 10%!important;">序号</view>
+            <view class="th" style="width: 18%!important;">姓名</view>
+            <view class="th" style="width: 18%!important;">金额</view>
+            <view class="th" style="width: 18%!important;">收货信息</view>
+            <view class="th" style="width: 36%!important;">快递单号</view>
+        </view>
+        <!-- 列表 -->
+        <block wx:for="{{3}}" wx:key="{{code}}">
+            <view class="tr {{index % 2 == 0?'bg-g':''}}">
+                <!-- 序号 -->
+                <view class="td" style="width: 10%!important;">{{index+1}}</view>
+                <view class="td" style="width: 18%!important;">陆于洋</view>
+                <view class="td" style="width: 18%!important;">120</view>
+                <view class="td" style="width: 18%!important;">查看</view>
+                <view class="td text-cut" style="width: 36%!important;">1234567890123456123123</view>
+            </view>
+        </block>
+    </view>
+
+    <!-- 导出 -->
+    <view wx:if="{{TabCur==3}}">
+        <!-- 导出Excel -->
+        <view class="cu-bar bg-white margin-top-xs">
+            <view class="action">
+                <text class="cuIcon-titles text-blue"></text>
+                <text class="text-xl text-bold">导出Excel</text>
+            </view>
+        </view>
+        <view class="margin-top-xs margin-left">
+            <van-button plain icon="down" type="info">所有预约信息</van-button>
+            <van-button plain icon="down" type="warning" class="margin-left-xs">所有订单信息</van-button>
+        </view>
+    </view>
+
+    <!-- 设置 -->
+    <view wx:if="{{TabCur==4}}">
+        <!-- 首页宣传图 -->
+        <view class="cu-bar bg-white margin-top-xs">
+            <view class="action">
+                <text class="cuIcon-titles text-blue"></text>
+                <text class="text-xl text-bold">首页宣传图</text>
+            </view>
+        </view>
+        <view class="margin-top-xs margin-left">
+            <van-button plain icon="scan" type="info">所有预约信息</van-button>
+            <van-button plain icon="scan" type="warning" class="margin-left-xs">所有订单信息</van-button>
+        </view>
+        <!-- 预约项目 -->
+        <view class="cu-bar bg-white margin-top">
+            <view class="action">
+                <text class="cuIcon-titles text-blue"></text>
+                <text class="text-xl text-bold">预约项目</text>
+            </view>
+        </view>
+        <view class="margin-top-xs margin-left">
+            <van-button plain icon="down" type="info">所有预约信息</van-button>
+            <van-button plain icon="down" type="warning" class="margin-left-xs">所有订单信息</van-button>
+        </view>
+        <!-- 商城 -->
+        <view class="cu-bar bg-white margin-top">
+            <view class="action">
+                <text class="cuIcon-titles text-blue"></text>
+                <text class="text-xl text-bold">商城</text>
+            </view>
+        </view>
+        <view class="margin-top-xs margin-left">
+            <van-button plain icon="scan" type="info">所有预约信息</van-button>
+            <van-button plain icon="scan" type="warning" class="margin-left-xs">所有订单信息</van-button>
+        </view>
+    </view>
+
+    <!-- 子页面 -->
+    <!-- 兑换奖品:显示收获信息 -->
+    <view class="cu-modal {{showAddress==true?'show':''}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white justify-end">
+                <view class="content">兑换礼包</view>
+                <view class="action" bindtap="hideModal">
+                    <text class="cuIcon-close text-red"></text>
+                </view>
+            </view>
+            <view class="padding">
+                <!-- 复制 -->
+                <view style="display: flex;flex-direction: row-reverse;margin-right: 15%;">
+                    <text class="cuIcon-copy lg text-gray" bindtap="copyAddress"></text>
+                </view>
+                <!-- 姓名 -->
+                <view class="address">
+                    <label>姓名：</label>
+                    <text>{{addressInfo.userName}}</text>
+                </view>
+                <!-- 电话 -->
+                <view class="address">
+                    <label>电话：</label>
+                    <text>{{addressInfo.telNumber}}</text>
+                </view>
+                <!-- 地址 -->
+                <view class="address">
+                    <label>住址：</label>
+                    <text>{{addressInfo.provinceName}}{{addressInfo.cityName}}{{addressInfo.countyName}}{{addressInfo.detailInfo}}</text>
+                </view>
+                <!-- 地址 -->
+                <view class="address">
+                    <label>邮编：</label>
+                    <text>{{addressInfo.postalCode}}</text>
+                </view>
+            </view>
+            <view class="cu-bar bg-white">
+                <view class="action margin-0 flex-sub text-green solid-left" bindtap="hideModal">取消</view>|
+                <view class="action margin-0 flex-sub text-blue solid-left" bindtap="confirmExchange">已经发货</view>
+            </view>
+        </view>
+    </view>
+</view>

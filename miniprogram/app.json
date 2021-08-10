@@ -1,0 +1,58 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/me/me",
+        "pages/shop/shop",
+        "pages/cart/cart",
+        "pages/appoint/appoint",
+        "pages/appointList/appointList",
+        "pages/orderList/orderList",
+        "pages/settlement/settlement"
+    ],
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#2684fe",
+        "navigationBarTitleText": "医疗机构",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "selectedColor": "#2684fe",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "img/app/index.png",
+                "selectedIconPath": "img/app/indexfill.png"
+            },
+            {
+                "pagePath": "pages/shop/shop",
+                "text": "商城",
+                "iconPath": "img/app/shop.png",
+                "selectedIconPath": "img/app/shopfill.png"
+            },
+            {
+                "pagePath": "pages/cart/cart",
+                "text": "购物车",
+                "iconPath": "img/app/cart.png",
+                "selectedIconPath": "img/app/cartfill.png"
+            },
+            {
+                "pagePath": "pages/me/me",
+                "text": "个人中心",
+                "iconPath": "img/app/me.png",
+                "selectedIconPath": "img/app/mefill.png"
+            }
+        ]
+    },
+    "subpackages": [
+        {
+            "root": "rootPackage",
+            "name": "root",
+            "pages": [
+                "pages/index/index"
+            ]
+        }
+    ],
+    "sitemapLocation": "sitemap.json"
+}
